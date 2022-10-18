@@ -13,7 +13,7 @@ const isAuth = (req, res, next) => {
         error.statusCode = 401;
         throw error;
       }
-      req.userId = decoded.userId;
+      req.memberId = decoded.memberId;
       next();
     });
   } catch (err) {

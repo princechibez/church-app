@@ -4,18 +4,21 @@ require("dotenv/config");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const path = require('path');
+const morgan = require('morgan');
+const compression = require('compression');
+const helmet = require("helmet")
 
-const Users = require("./models/users");
 const authRoutes = require("./routes/authRoutes");
-const userRoutes = require("./routes/userActions")
+const memberRoutes = require("./routes/memberActions")
 
 const app = express();
 
 // app.use(cors({ origin: "*", allowedHeaders: "Content-Type, Authorization", methods: "POST, GET, PUT, PATCH, DELETE" }));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use("/images", express.static(path.join(__dirname, "images")))
-app.use(bodyParser.json());
-app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json({limit: '50mb'}));
+app.use(helmet())
+app.use(morgan())
+app.use(compression())
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
@@ -26,7 +29,7 @@ app.use((req, res, next) => {
 
 
 app.use("/auth", authRoutes)
-app.use("/users", userRoutes)
+app.use("/members", memberRoutes)
 
 app.use((error, req, res, next) => {
   res.status(error.statusCode || 500).json(error.message);
