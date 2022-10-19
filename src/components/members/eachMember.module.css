@@ -54,6 +54,9 @@ li {
     font-weight: 600;
     font-size: 16px;
 }
+.image_section img {
+    object-fit: cover;
+}
 .content .info {
     text-align: center;
 }
