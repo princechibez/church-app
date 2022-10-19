@@ -123,7 +123,7 @@ const MemberDetails = (props) => {
       return imgDisplay = <Spinner />
     }
     imgDisplay = <>
-    <img src={setProfilePix(details)} alt="profile-image" />
+    <img style={{objectFit: "cover"}} src={setProfilePix(details)} alt="profile-image" />
         {details._id === localStorage.getItem("memberId") && <input
           type="file"
           name="profile-image"

@@ -143,6 +143,9 @@ li {
 .list_name_section {
     line-height: 1px;
 }
+.list_image_section img {
+    object-fit: cover;
+}
 .list_name_section h3 {
     font-size: 18px;
     color: #292929;

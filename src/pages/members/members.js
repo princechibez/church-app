@@ -104,7 +104,9 @@ const Members = (props) => {
     navigate(`/member-details?${createSearchParams(detailParams)}`)
   }
 
-  const setProfilePix = (details) => {
+  const setProfilePix = () => {
+    const member = filterdUsers.find(m => m._id === localStorage.getItem("memberId"))
+    member && localStorage.setItem("pix", member.profilePicture)
     let profileImg;
     if(localStorage.getItem("pix") === "") {
       profileImg = userIcon
@@ -127,7 +129,7 @@ const Members = (props) => {
       <div className={classes.top_area}>
         <div className={classes.profiler}>
         <h1>Meet other members</h1>
-        <img src={setProfilePix()} onClick={goToProfile} style={{borderRadius: "50%"}} height={60} width={60} />
+        <img src={setProfilePix()} onClick={goToProfile} style={{borderRadius: "50%", objectFit: "cover"}} height={60} width={60} />
         </div>
         <div className={classes.functionality_controllers}>
           <div>
