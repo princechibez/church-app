@@ -54,9 +54,9 @@ li {
     font-weight: 600;
     font-size: 16px;
 }
-.image_section img {
+/* .image_section img {
     object-fit: cover;
-}
+} */
 .content .info {
     text-align: center;
 }
@@ -143,9 +143,9 @@ li {
 .list_name_section {
     line-height: 1px;
 }
-.list_image_section img {
+/* .list_image_section img {
     object-fit: cover;
-}
+} */
 .list_name_section h3 {
     font-size: 18px;
     color: #292929;

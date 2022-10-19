@@ -46,7 +46,7 @@ const EachMember = (props) => {
                 <h3>{props.name}</h3>
             </div>
             <div className={classes.image_section}>
-                <img src={setProfilePix(props.gender, props.picture)} height={80} width={80} style={{borderRadius: "50%"}} />
+                <img src={setProfilePix(props.gender, props.picture)} height={80} width={80} style={{borderRadius: "50%", objectFit: "cover"}} />
             </div>
             <div className={classes.info}>
                 <h3>{props.department}</h3>
@@ -62,7 +62,7 @@ const EachMember = (props) => {
     <div className={classes.list_content}>
         <div className={classes.user_info}>
         <div className={classes.list_image_section}>
-            <img src={setProfilePix(props.gender, props.picture)} height={60} width={60} style={{borderRadius: "50%"}} />
+            <img src={setProfilePix(props.gender, props.picture)} height={60} width={60} style={{borderRadius: "50%", objectFit: "cover"}} />
         </div>
         <div className={classes.list_name_section}>
             <h3>{props.name}</h3>
