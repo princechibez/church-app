@@ -93,7 +93,10 @@ const MemberDetails = (props) => {
           navigate("/members");
           // window.location.reload();
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          setLoading(false)
+          console.log(err)
+        });
   };
 
   const communicate = (type, medium) => {
