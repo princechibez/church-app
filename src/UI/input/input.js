@@ -24,6 +24,7 @@ const Input = (props) => {
                 type={props.elementConfig.type}
                 placeholder={props.elementConfig.placeholder}
                 onChange={props.changed}
+                disabled={props.disabled}
               />
               <i
                 onClick={props.tooglePassword}

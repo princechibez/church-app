@@ -1,3 +1,7 @@
+:root {
+  --password-background: transparent;
+}
+
 .inputTag {
   display: flex;
   flex-direction: column;
@@ -35,11 +39,14 @@
   border: 2px solid #9a9a98;
 }
 .password_field .input {
-    height: 100%;
-    width: 80%;
-    padding: 10px;
-    border: none;
-    background-color: transparent;
+  height: 100%;
+  width: 80%;
+  padding: 10px;
+  border: none;
+  background-color: var(--password-background);
+}
+.password_field .input:disabled {
+  --password-background: #e3e3e3;
 }
 .password_field i {
     display: flex;

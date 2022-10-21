@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "kings-palace-app"
-  }
+    "default": "kings-palace-app",
+    "staging": "kingspalace-f9dd4"
+  },
+  "targets": {},
+  "etags": {}
 }

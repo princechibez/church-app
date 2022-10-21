@@ -375,6 +375,7 @@ const Signup = () => {
               changed={(event) => inputChangedHandler(event, element.key)}
               valid={element.elementConfig.validation.valid}
               touched={element.elementConfig.touched}
+              // disabled={details.editing}
             />
           ))}
         </div>
