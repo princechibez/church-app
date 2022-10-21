@@ -34,7 +34,7 @@ const Members = (props) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [searchMode, setSearchMode] = useState("name");
-  const [viewMode, setViewMode] = useState("grid");
+  const [viewMode, setViewMode] = useState("list");
   
   useLayoutEffect(() => {
     const fetchData = () => {
