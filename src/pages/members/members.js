@@ -45,6 +45,7 @@ const Members = (props) => {
         .then((res) => {
           setLoading(false);
           setfilteredUsers(res.data.members);
+          console.log(res.date.members)
           setUsers(res.data.members);
         })
         //   }
@@ -84,7 +85,7 @@ const Members = (props) => {
     updatedList = newList.filter((item) => {
       setSearchMessage(null);
       const name = item.fullName;
-      const departments = item.departments.join(" ")
+      const departments = [item.departments.major, item.departments.otherDepts].join(" ")
       if(searchMode === "name") return name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
       if(searchMode === "department") return departments.toLowerCase().indexOf(query.toLowerCase()) !== -1;
     });
@@ -169,7 +170,7 @@ const Members = (props) => {
                 name={e.fullName ? e.fullName : ""}
                 picture={e.profilePicture ? e.profilePicture: ""}
                 phone={e.phoneNumber}
-                department={e.departments[0]}
+                department={e.departments.major}
               />
             );
           })}
