@@ -251,6 +251,12 @@ const Signup = () => {
     if (identifier === "confirmPassword") {
       isValid = isValid && value.trim() === formObj["password"].value;
     }
+    if (identifier === "gender") {
+      isValid = isValid && value.trim() !== "Select Gender";
+    }
+    if (identifier === "department") {
+      isValid = isValid && value.trim() !== "Choose Department";
+    }
 
     if (!validationRules.required) return true;
     if (isValid) {

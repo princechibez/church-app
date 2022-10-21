@@ -3,7 +3,7 @@ export const departments = [
   { value: "Women", displayValue: "Women" },
   { value: "Youth", displayValue: "Youth" },
   { value: "Teenager", displayValue: "Teenager" },
-  { value: "Sanctuary", displayValue: "Sanctuary" },
-  { value: "Welfare", displayValue: "Welfare" },
-  { value: "Visitation", displayValue: "Visitation" },
+  // { value: "Sanctuary", displayValue: "Sanctuary" },
+  // { value: "Welfare", displayValue: "Welfare" },
+  // { value: "Visitation", displayValue: "Visitation" },
 ];
