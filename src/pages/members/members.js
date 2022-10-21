@@ -101,7 +101,6 @@ const Members = (props) => {
   };
 
   const goToDetails = (member) => {
-    console.log(member)
     const detailParams = Object.assign({}, {...member, departments: member.departments.major})
     navigate(`/member-details?${createSearchParams(detailParams)}`)
   }
