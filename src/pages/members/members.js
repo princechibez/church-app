@@ -84,10 +84,11 @@ const Members = (props) => {
     updatedList = newList.filter((item) => {
       setSearchMessage(null);
       const name = item.fullName;
-      const departments = item.departments.join(" ")
+      const departments = item.departments.major
       if(searchMode === "name") return name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
       if(searchMode === "department") return departments.toLowerCase().indexOf(query.toLowerCase()) !== -1;
     });
+    
     if (updatedList.length === 0) {
       setSearchMessage("No member matched your search");
     }

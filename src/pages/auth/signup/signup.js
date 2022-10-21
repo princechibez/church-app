@@ -1,6 +1,7 @@
 import React, { useMemo, useState, useEffect, useRef } from "react";
 
 import axios from "../../../utility/axios";
+import {toast, ToastContainer} from "react-toastify"
 
 import classes from "./signup.module.css";
 import Navbar from "../../../components/navbar/navbar";
@@ -20,8 +21,6 @@ const Signup = () => {
   // const [showModal, setShowModal] = useState(false);
   const [formIsValid, setFormIsValid] = useState(false);
 
-  const modalView = useRef();
-
   let details = {};
   const [searchParams] = useSearchParams();
   for (const param of searchParams.entries()) {
@@ -34,8 +33,6 @@ const Signup = () => {
         setModalState(null);
       }, 3000);
     }
-
-    modalView.current.scrollIntoView();
   }, [modalState]);
 
   const [signupForm, setSignupForm] = useState({
@@ -300,6 +297,7 @@ const Signup = () => {
   };
 
   const formSubmitter = async () => {
+    
     let newForm = {};
     for (const keys in signupForm) {
       if (keys === "validForm") continue;
@@ -307,6 +305,7 @@ const Signup = () => {
     }
     
     // Send Signup Request
+    const id = toast.loading("Wait a few moment, we are registering you...")
     try {
       const response = !details.editing ? await axios.put(
         `auth/signup`,
@@ -317,19 +316,15 @@ const Signup = () => {
         JSON.stringify(newForm),
         { headers: { "Content-Type": "application/json", Authorization: localStorage.getItem("token") } }
       )
-      setModalState({
-        error: false,
-        success: true,
-        message: response.data.message,
-      });
-      details.editing ? navigate(`/members`) : navigate("/login");
+      toast.update(id,  {render: response.data.message, type: "success", isLoading: false, autoClose: 2000})
+      setTimeout(() => {
+        details.editing ? navigate(`/members`) : navigate("/login");
+      }, 2000);
+
     } catch (err) {
-      setModalState({
-        error: true,
-        success: false,
-        message: err.response.data,
-      });
+      toast.update(id, {render: err.response.data, type: "error", isLoading: false, autoClose: 2000 });
     }
+
   };
 
   const redirectToLogin = () => {
@@ -348,15 +343,7 @@ const Signup = () => {
   return (
     <React.Fragment>
       <main>
-      {/* <Navbar /> */}
-      <div ref={modalView}></div>
-      <ErrorModal
-        show={modalState}
-        error={modalState?.error}
-        success={modalState?.success}
-      >
-        {modalState?.message}
-      </ErrorModal>
+      <ToastContainer />
       <div className={classes.formbody}>
         <div
           style={{

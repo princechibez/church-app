@@ -19,16 +19,12 @@ const Login = (props) => {
   const [showModal, setShowModal] = useState(false);
   const [formIsValid, setFormIsValid] = useState(true);
 
-  const modalView = useRef()
-
   useEffect(() => {
     if (modalState) {
       setTimeout(() => {
         setModalState(null)
       }, 3000);
     }
-
-    modalView.current?.scrollIntoView()
   }, [modalState])
 
   const [signupForm, setSignupForm] = useState({
@@ -132,29 +128,24 @@ const Login = (props) => {
       newForm[keys] = signupForm[keys].value;
     }
     // Send Login Request
+    const id = toast.loading("We're loggin you into the room...")
     try {
       const response = await axios.post(
         `auth/login`,
         JSON.stringify(newForm),
         { headers: { "Content-Type": "application/json"} }
       );
-      setModalState({
-        error: false,
-        success: true,
-        message: response.data.message
-      })
-      props.setMember(response.data.member)
-      localStorage.setItem("token", response.data.token)
-      localStorage.setItem("auth", true)
-      localStorage.setItem("memberId", response.data.member._id)
-      localStorage.setItem("pix", response.data.member.profilePicture)
-      navigate("/members")
+      toast.update(id,  {render: response.data.message, type: "success", isLoading: false, autoClose: 2000})
+      setTimeout(() => {
+        props.setMember(response.data.member)
+        localStorage.setItem("token", response.data.token)
+        localStorage.setItem("auth", true)
+        localStorage.setItem("memberId", response.data.member._id)
+        localStorage.setItem("pix", response.data.member.profilePicture)
+        navigate("/members")
+      }, 2000);
     } catch (err) {
-      setModalState({
-        error: true,
-        success: false,
-        message: err.response.data
-      })
+      toast.update(id, {render: err.response.data, type: "error", isLoading: false, autoClose: 2000 });
     }
   }
   
@@ -169,15 +160,7 @@ const Login = (props) => {
   
   return (
     <React.Fragment>
-      {/* <Navbar /> */}
-      <div ref={modalView}></div>
-      <ErrorModal
-        show={modalState}
-        error={modalState?.error}
-        success={modalState?.success}
-      >
-        {modalState?.message}
-      </ErrorModal>
+      <ToastContainer />
       {/* <button onClick={() =>toast.warn("Easy if it works..")}>Click</button>
       <ToastContainer 
       autoClose={1000}
