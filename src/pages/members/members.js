@@ -45,7 +45,6 @@ const Members = (props) => {
         .then((res) => {
           setLoading(false);
           setfilteredUsers(res.data.members);
-          console.log(res.date.members)
           setUsers(res.data.members);
         })
         //   }
@@ -85,7 +84,7 @@ const Members = (props) => {
     updatedList = newList.filter((item) => {
       setSearchMessage(null);
       const name = item.fullName;
-      const departments = [item.departments.major, item.departments.otherDepts].join(" ")
+      const departments = item.departments.join(" ")
       if(searchMode === "name") return name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
       if(searchMode === "department") return departments.toLowerCase().indexOf(query.toLowerCase()) !== -1;
     });
@@ -101,7 +100,8 @@ const Members = (props) => {
   };
 
   const goToDetails = (member) => {
-    const detailParams = Object.assign({}, {...member})
+    console.log(member)
+    const detailParams = Object.assign({}, {...member, departments: member.departments.major})
     navigate(`/member-details?${createSearchParams(detailParams)}`)
   }
 
