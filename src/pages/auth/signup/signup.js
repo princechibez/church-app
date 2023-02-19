@@ -6,7 +6,7 @@ import {toast, ToastContainer} from "react-toastify"
 import classes from "./signup.module.css";
 import Navbar from "../../../components/navbar/navbar";
 import Input from "../../../UI/input/input";
-import googleIcon from "../../../assets/images/search.png";
+import googleIcon from "../../../assets/images/google.png";
 import { createSearchParams, useNavigate, useSearchParams } from "react-router-dom";
 import ErrorModal from "../../../utility/Modal/ErrorModal/errorModal";
 import { departments } from "../../../models/departments";
@@ -340,6 +340,13 @@ const Signup = () => {
     });
   }
 
+  const googleSignup = () => {
+    window.open("http://localhost:5050/auth/signup/google", "_self")
+    // return window.location.href = "http://localhost:5050/auth/signup/google"
+    // axios.get("auth/login/google")
+    // .then(res => console.log(res)).catch(err => console.log(err))
+  }
+
   return (
     <React.Fragment>
       <main>
@@ -395,7 +402,7 @@ const Signup = () => {
           <p style={{ color: "#535350", fontSize: "18px", fontWeight: "400" }}>
             OR
           </p>
-          <button className={classes.continue}>
+          <button onClick={googleSignup} className={classes.continue}>
             <img src={googleIcon} height={25} width={25} /> Continue with Google
           </button>
           <div>
